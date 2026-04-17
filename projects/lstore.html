@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>L-Store Database | Andrew Ortega</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="../index.html">Andrew <span>Ortega</span></a>
+
+    <div class="nav-wrap">
+      <button class="menu-btn" id="menuBtn" type="button">☰</button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../resume.html">Resume</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="section">
+  <div class="container">
+
+    <div class="eyebrow">Systems / Database Project</div>
+    <h2>L-Store Database (AvenueDB)</h2>
+
+    <section class="card info-card">
+      <h3>Overview</h3>
+      <p>
+        AvenueDB is a Python implementation of an L-Store-style storage engine
+        built around base pages, tail pages, versioned records, indexing, and
+        buffered disk access. The system supports transactional-style data
+        operations while balancing read efficiency with append-friendly updates.
+      </p>
+      <p>
+        Rather than performing in-place overwrites, updates are appended to tail
+        records and later merged back into base storage, allowing the engine to
+        preserve historical versions while keeping current reads efficient.
+      </p>
+    </section>
+
+    <section class="card info-card project-access-card">
+      <div class="project-access-header">
+        <div>
+          <div class="eyebrow">Project Access</div>
+          <h3>Explore the Repository</h3>
+          <p class="muted">
+            This project is publicly available. You can inspect the storage
+            engine, query paths, merge logic, and bufferpool implementation directly.
+          </p>
+        </div>
+      </div>
+
+      <div class="project-access-links">
+        <a
+          class="project-link-btn primary"
+          href="https://github.com/Hawkhobo/AvenueDB"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View Repository
+        </a>
+
+        <a
+          class="project-link-btn secondary"
+          href="https://github.com/Hawkhobo/AvenueDB/tree/main/lstore"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Browse lstore Module
+        </a>
+      </div>
+    </section>
+
+    <section class="grid-2 section">
+
+    <article class="card info-card">
+        <h3>Core Capabilities</h3>
+        <ul class="resume-list">
+        <li>Base / tail page architecture</li>
+        <li>Bufferpool-backed page caching</li>
+        <li>Background merge process</li>
+        <li>Version-aware reads and aggregation</li>
+        <li>Column indexing and range lookup</li>
+        <li>Persistent open / close / reload flow</li>
+        </ul>
+    </article>
+
+    <article class="card info-card">
+        <h3>What I Learned</h3>
+        <p>
+        This project strengthened my understanding of database internals,
+        particularly how storage layout, caching, and indexing impact performance.
+        I gained experience designing systems that evolve over time, often
+        requiring refactoring when new constraints such as persistence or
+        concurrency were introduced.
+        </p>
+
+        <p>
+        Working in a team environment also emphasized the importance of clear
+        communication and coordination, especially when multiple components
+        (query logic, storage, indexing, and merging) were being developed
+        simultaneously.
+        </p>
+
+        <p class="muted">
+        A key takeaway was recognizing how small oversights in metadata or system
+        design can propagate into larger issues, requiring careful debugging and
+        sometimes reworking earlier decisions.
+        </p>
+    </article>
+      </section>
+    <section class="grid-2 section">
+      <article class="card info-card">
+        <h3>Storage Architecture</h3>
+        <p>
+          The database stores original rows in base pages and appends updates to
+          tail pages instead of rewriting records in place. This layout supports
+          efficient update handling while preserving record history for versioned access.
+        </p>
+      </article>
+
+      <article class="card info-card">
+        <h3>Merge Process</h3>
+        <p>
+          Updated base record identifiers are collected and a merge is triggered
+          once the unmerged count reaches a threshold. The merge path runs in the
+          background and consolidates the latest tail updates back into base pages.
+        </p>
+      </article>
+
+      <article class="card info-card">
+        <h3>Buffer Pool & Caching</h3>
+        <p>
+          The system includes a buffer pool with in-memory page caching, dirty-page
+          tracking, pin/unpin support, and LRU-based eviction. This reduces repeated
+          disk reads and improves access performance for hot pages.
+        </p>
+      </article>
+
+      <article class="card info-card">
+        <h3>Indexing</h3>
+        <p>
+          AvenueDB builds indexes across columns and uses them for point lookups
+          and range-based access. This lets query paths avoid full scans for common
+          retrieval operations.
+        </p>
+      </article>
+    </section>
+
+    <section class="card info-card">
+      <h3>Query Surface</h3>
+      <p>
+        The query layer goes beyond basic CRUD. In addition to insert, delete,
+        select, and update, the implementation supports historical reads through
+        <code>select_version</code>, range aggregation through <code>sum</code>
+        and <code>sum_version</code>, and single-column mutation through
+        <code>increment</code>.
+      </p>
+
+      <div class="code-block">
+<pre><code>
+Supported operations:
+- insert(...)
+- delete(primary_key)
+- select(search_key, column, projection)
+- select_version(search_key, column, projection, relative_version)
+- update(primary_key, *columns)
+- sum(start_range, end_range, column)
+- sum_version(start_range, end_range, column, relative_version)
+- increment(key, column)
+</code></pre>
+      </div>
+    </section>
+
+    <section class="grid-2 section">
+      <article class="card info-card">
+        <h3>Persistence</h3>
+        <p>
+          The database supports opening from a storage path, loading saved table
+          metadata, flushing dirty pages on close, and restoring tables from disk
+          on subsequent runs.
+        </p>
+      </article>
+
+      <article class="card info-card">
+        <h3>Concurrency Direction</h3>
+        <p>
+          The implementation also includes locking/coordination primitives around
+          update, delete, and merge behavior, plus threaded execution in the merge
+          path to process consolidated records concurrently.
+        </p>
+      </article>
+    </section>
+
+    <section class="card info-card">
+      <h3>How It Was Validated</h3>
+      <p>
+        Since this is a backend storage engine rather than a UI product, the main
+        proof of correctness came through repository-visible testers and operation
+        validation. That is appropriate for this kind of system: correctness,
+        data layout behavior, version handling, and merge behavior matter more
+        than a visual demo.
+      </p>
+    </section>
+
+    <section class="card info-card">
+      <h3>What Makes It Interesting</h3>
+      <p>
+        This project pushed me to think about database tradeoffs directly:
+        append-friendly writes versus read efficiency, how to cache pages safely,
+        when to merge historical updates back into base storage, and how to expose
+        both current and historical query behavior through one engine.
+      </p>
+    </section>
+
+    <section class="card info-card">
+    <h3>Design Evolution & Challenges</h3>
+
+    <p>
+        The system was developed across three milestones, each introducing new
+        requirements that forced architectural changes and refactoring of earlier
+        components.
+    </p>
+
+    <ul class="resume-list">
+        <li>
+        <strong>Milestone 1 - Core Functionality:</strong>
+        Implemented a fully functional database supporting all query operations,
+        including insert, update, delete, select, and aggregation. At this stage,
+        the system operated entirely in-memory without persistence.
+        </li>
+
+        <li>
+        <strong>Milestone 2 - Persistence & Merging:</strong>
+        Added disk persistence and introduced the merge process to consolidate
+        tail records into base pages. Merging was initially invoked manually,
+        requiring careful coordination to maintain correct record state.
+        </li>
+
+        <li>
+        <strong>Milestone 3 - Background Merge & Concurrency:</strong>
+        Converted merging into a background process, introducing concurrency
+        challenges. This required rethinking synchronization, handling shared
+        state safely, and ensuring consistency while reads and writes occurred
+        alongside merge operations.
+        </li>
+    </ul>
+
+    <p class="muted">
+        These evolving requirements required revisiting earlier design decisions,
+        particularly around storage layout, merge triggering, and coordination
+        between threads. Supporting background merging without breaking correctness
+        was one of the most challenging aspects of the project.
+    </p>
+    </section>
+
+    <section class="card info-card">
+      <h3>Notes</h3>
+      <p>
+        This was a collaborative project and the public repository reflects the
+        implementation directly.
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer container">
+  <p>Database engine project focused on buffered storage, versioned records, merge logic, and indexed query execution.</p>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>
