@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Virtual File System | Andrew Ortega</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="../index.html">Andrew <span>Ortega</span></a>
+
+    <div class="nav-wrap">
+      <button class="menu-btn" id="menuBtn" type="button">☰</button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../resume.html">Resume</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="section">
+  <div class="container">
+
+    <div class="eyebrow">Systems Programming Project</div>
+    <h2>Virtual File System</h2>
+
+    <section class="card info-card">
+      <h3>Overview</h3>
+      <p>
+        I built a virtual file system in C that operates on top of a virtual disk,
+        implementing core file system concepts such as mounting, unmounting, file
+        creation, file deletion, open file tracking, and persistent block-based storage.
+      </p>
+
+      <p>
+        The system uses a superblock, a FAT-style allocation structure, and a root
+        directory to organize files and manage data blocks. It supports common file
+        operations such as read, write, seek, and stat while maintaining file offsets
+        for open descriptors.
+      </p>
+    </section>
+
+    <section class="grid-2 section">
+      <article class="card info-card">
+        <h3>Core Capabilities</h3>
+        <ul class="resume-list">
+          <li>Mount and unmount a virtual file system</li>
+          <li>Create, delete, open, and close files</li>
+          <li>Track open file descriptors and offsets</li>
+          <li>Read and write file contents across disk blocks</li>
+          <li>Seek within files and query file size</li>
+          <li>Persist metadata and data to a virtual disk</li>
+        </ul>
+      </article>
+
+      <article class="card info-card">
+        <h3>What I Learned</h3>
+        <p>
+          This project gave me hands-on experience with how file systems organize
+          persistent data on disk, including allocation, metadata layout, and open-file
+          state management. It also reinforced how small implementation details such as
+          offsets, boundary conditions, and FAT updates can affect correctness across
+          the entire system.
+        </p>
+      </article>
+    </section>
+
+    <section class="grid-2 section">
+      <article class="card info-card">
+        <h3>On-Disk Layout</h3>
+        <p>
+          The file system is organized around a superblock describing the disk layout,
+          a FAT structure for block allocation, a fixed-size root directory, and data
+          blocks used to store file contents. This structure provides a compact but
+          realistic model of how a disk-backed file system works.
+        </p>
+      </article>
+
+      <article class="card info-card">
+        <h3>File Management</h3>
+        <p>
+          Files are stored in the root directory with metadata such as file name,
+          size, and starting block. Open files are tracked through a separate table
+          that stores file descriptor state and current offsets for reads and writes.
+        </p>
+      </article>
+
+      <article class="card info-card">
+        <h3>Block Allocation</h3>
+        <p>
+          File contents are stored across data blocks and linked through a FAT-style
+          allocation table. This allows the file system to handle files spanning multiple
+          blocks while supporting append, overwrite, and partial reads or writes.
+        </p>
+      </article>
+
+      <article class="card info-card">
+        <h3>Persistence</h3>
+        <p>
+          Metadata structures and file contents are written back to the virtual disk so
+          that files persist across mount and unmount cycles. This makes the project a
+          true disk-backed system rather than an in-memory simulation.
+        </p>
+      </article>
+    </section>
+
+    <section class="card info-card">
+      <h3>Interface Surface</h3>
+
+      <p>
+        The implementation supports the key file system operations expected from the
+        provided interface, including mounting, directory management, and random-access
+        file operations through file descriptors.
+      </p>
+
+      <div class="code-block">
+        <pre><code>
+        Supported operations:
+        - fs_mount(...)
+        - fs_umount()
+        - fs_info()
+        - fs_create(filename)
+        - fs_delete(filename)
+        - fs_ls()
+        - fs_open(filename)
+        - fs_close(fd)
+        - fs_stat(fd)
+        - fs_lseek(fd, offset)
+        - fs_read(fd, buffer, count)
+        - fs_write(fd, buffer, count)
+        </code></pre>
+      </div>
+    </section>
+
+    <section class="card info-card">
+      <h3>Validation & Testing</h3>
+      <p>
+        Since this project is a backend systems implementation, correctness was
+        demonstrated through scripted and programmatic tests rather than a GUI.
+        The provided test harness covered behaviors such as small reads/writes,
+        multi-block writes, overwrite cases, overread handling, offset-based reads,
+        and other boundary conditions that are critical in file system logic.
+      </p>
+
+      <div class="code-block">
+        <pre><code>
+        Example testing scenarios:
+        - create → open → write → seek → read
+        - write data across multiple blocks
+        - overwrite existing file regions
+        - read past current offset / file boundaries
+        - mount → persist → unmount → remount → verify contents
+        </code></pre>
+      </div>
+    </section>
+
+    <section class="card info-card">
+      <h3>Challenges</h3>
+      <p>
+        One of the main challenges was correctly handling block-oriented storage
+        while still exposing a byte-oriented file interface. Reads and writes had
+        to work correctly both within a single block and across block boundaries,
+        while keeping metadata, FAT entries, and file size consistent.
+      </p>
+
+      <p class="muted">
+        Managing file offsets and ensuring that data remained correct after seeking,
+        remounting, and partial overwrites required careful debugging and strong
+        attention to edge cases.
+      </p>
+    </section>
+
+    <section class="card info-card">
+      <h3>Why It Matters</h3>
+      <p>
+        This project helped me understand how higher-level file operations map onto
+        low-level disk structures. It strengthened my systems programming skills and
+        gave me experience implementing persistent storage, metadata management, and
+        file access semantics from the ground up.
+      </p>
+    </section>
+
+    <section class="card info-card">
+      <h3>Notes</h3>
+      <p>
+        Source code is available upon request due to academic collaboration
+        constraints. The project was validated using the provided testing framework
+        and custom created scripts designed to stress file system behavior across
+        realistic edge cases.
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer container">
+  <p>Virtual file system project focused on persistent storage, FAT-based allocation, and file operation correctness.</p>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>
