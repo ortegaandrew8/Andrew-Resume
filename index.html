@@ -1,13 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Andrew Ortega Resume</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andrew Ortega | Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">Andrew Ortega</a>
 
-<h1>IN PROGRESS</h1>
+      <div class="nav-wrap">
+        <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-label="Open navigation">
+          ☰
+        </button>
 
+        <nav class="nav-links" id="navLinks">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="projects.html">Projects</a>
+          <a href="resume.html">Resume</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="card hero-card">
+          <div class="eyebrow">Backend • Systems • Full Stack</div>
+          <h1>Building practical software with strong systems foundations.</h1>
+          <p class="lead">
+            I'm Andrew Ortega, a software engineer focused on backend services,
+            distributed systems, concurrency, and clean product-minded engineering.
+          </p>
+
+          <div class="button-row">
+            <a class="btn btn-primary" href="projects.html">View Projects</a>
+            <a class="btn btn-secondary" href="resume.html">Open Resume</a>
+          </div>
+        </div>
+
+        <div class="card panel">
+          <h2>Quick Snapshot</h2>
+          <ul class="stat-list">
+            <li>JavaScript / Node.js</li>
+            <li>React</li>
+            <li>Python</li>
+            <li>AWS</li>
+            <li>Firebase</li>
+            <li>Distributed Systems</li>
+            <li>Concurrency</li>
+            <li>Systems Programming</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Featured Projects</h2>
+        <div class="grid-3">
+          <article class="card project-card">
+            <h3>Translatinator</h3>
+            <p>
+              Built a full-stack language learning web app that translates text into multiple
+              languages, generates synchronized speech, and reinforces learning through
+              interactive games, subscriptions, and a points-based reward system.
+            </p>
+            <div class="project-links">
+              <a class="btn btn-secondary" href="projects/translatinator.html">Read More</a>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <h3>L-Store Database</h3>
+            <p>
+              Column-store database engine with page architecture, persistence,
+              CRUD support, merges, and concurrency control.
+            </p>
+            <div class="project-links">
+              <a class="btn btn-secondary" href="projects/lstore.html">Read More</a>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <h3>User-level Thread Library (Uthread)</h3>
+            <p>
+              Built a user-level threading library in C supporting preemptive scheduling,
+              synchronization via semaphores, and context switching. Implemented a custom
+              scheduler, thread control blocks, and timer-based interrupts to simulate
+              concurrent execution.
+            </p>
+            <div class="project-links">
+              <a class="btn btn-secondary" href="projects/uthread.html">Read More</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer container">
+    <p>Built for GitHub Pages. Clean, static, and easy to maintain.</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

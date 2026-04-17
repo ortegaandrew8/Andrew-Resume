@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects | Andrew Ortega</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">Andrew Ortega</a>
+
+      <div class="nav-wrap">
+        <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-label="Open navigation">
+          ☰
+        </button>
+
+        <nav class="nav-links" id="navLinks">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="projects.html">Projects</a>
+          <a href="resume.html">Resume</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="eyebrow">Projects</div>
+      <h2>Selected Work</h2>
+
+      <div class="grid-2">
+        <article class="card project-card">
+          <h3>Translatinator</h3>
+          <p>
+            Built a full-stack language learning web app that translates text into multiple
+            languages, generates synchronized speech, and reinforces learning through
+            interactive games, subscriptions, and a points-based reward system.
+          </p>
+          <ul class="tag-list">
+            <li>JavaScript</li>
+            <li>React</li>
+            <li>Node.js</li>
+            <li>Firebase</li>
+            <li>Google APIs</li>
+            <li>Stripe</li>
+            <li>Redis</li>
+            </ul>
+          <div class="button-row">
+            <a class="btn btn-secondary" href="projects/translatinator.html">Case Study</a>
+          </div>
+        </article>
+
+        <article class="card project-card">
+          <h3>L-Store Database</h3>
+          <p>
+            Academic database implementation emphasizing storage layout,
+            persistence, updates, versioning, and concurrency.
+          </p>
+          <ul class="tag-list">
+            <li>Python</li>
+            <li>Storage Engine</li>
+            <li>Concurrency</li>
+            <li>Database Systems</li>
+          </ul>
+          <div class="button-row">
+            <a class="btn btn-secondary" href="projects/lstore.html">Case Study</a>
+          </div>
+        </article>
+
+        <article class="card project-card">
+          <h3>Simple Shell </h3>
+          <p>
+            Built a Unix-style shell in C capable of executing standard commands, handling
+            piping across multiple processes, and supporting input/output redirection.
+            Implemented command parsing, process management, and inter-process communication
+            using pipes and file descriptors.
+          </p>
+          <ul class="tag-list">
+            <li>C</li>
+            <li>Systems Programming</li>
+            <li>Process Management</li>
+            <li>Unix</li>
+            <li>Pipes</li>
+            <li>File Descriptors</li>
+            <li>Shell</li>
+          </ul>
+          <div class="button-row">
+            <a class="btn btn-secondary" href="projects/shell.html">Case Study</a>
+          </div>
+        </article>
+
+        <article class="card project-card">
+          <h3>User-level Thread Library (Uthread)</h3>
+          <p>
+            Built a user-level threading library in C supporting preemptive scheduling,
+            synchronization via semaphores, and context switching. Implemented a custom
+            scheduler, thread control blocks, and timer-based interrupts to simulate
+            concurrent execution.
+          </p>
+            <ul class="tag-list">
+            <li>C</li>
+            <li>Concurrency</li>
+            <li>Threading</li>
+            <li>Scheduling</li>
+            <li>Synchronization</li>
+            <li>Semaphores</li>
+            <li>Preemption</li>
+            </ul>
+          <div class="button-row">
+            <a class="btn btn-secondary" href="projects/uthread.html">Case Study</a>
+          </div>
+        </article>
+
+        <article class="card project-card">
+          <h3>Virtual File System</h3>
+          <p>
+            Developed a real-time Brick Breaker game on TI CC3200 with OLED display, accelerometer input, IR control, and audio in C.
+            Scores from game could be uploaded to DynamoDB leaderboard table.
+          </p>
+          <ul class="tag-list">
+            <li>C</li>
+            <li>CC3200</li>
+            <li>AWS (DynamoDB, IAM, Lambda)</li>
+          </ul>
+          <div class="button-row">
+            <a class="btn btn-secondary" href="projects/vfs.html">Case Study</a>
+          </div>
+        </article>
+
+
+        <article class="card project-card">
+          <h3>Embedded Brick Breaker Game</h3>
+          <p>
+            Built a CC3200-based Brick Breaker game with accelerometer-controlled paddle
+            movement, OLED rendering, power-ups, sound effects, and an online AWS-backed
+            leaderboard. Integrated embedded hardware, gameplay logic, and cloud services
+            to create a complete arcade-style system.
+          </p>
+          <ul class="tag-list">
+            <li>C</li>
+            <li>Embedded Systems</li>
+            <li>CC3200</li>
+            <li>I2C</li>
+            <li>SPI</li>
+            <li>AWS</li>
+            <li>DynamoDB</li>
+          </ul>
+          <div class="button-row">
+            <a class="btn btn-secondary" href="projects/brickbreaker.html">Case Study</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer container">
+    <p>Use project pages to explain the problem, architecture, and technical tradeoffs.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User-Level Thread Library | Andrew Ortega</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="../index.html">Andrew <span>Ortega</span></a>
+
+    <div class="nav-wrap">
+      <button class="menu-btn" id="menuBtn">☰</button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../resume.html">Resume</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="section">
+  <div class="container">
+
+    <div class="eyebrow">Systems / Concurrency Project</div>
+    <h2>User-Level Thread Library (Uthread)</h2>
+
+    <!-- Overview -->
+    <section class="card info-card">
+      <h3>Overview</h3>
+      <p>
+        I implemented a user-level threading library in C that enables concurrent
+        execution of multiple threads within a single process. The system supports
+        preemptive scheduling, synchronization through semaphores, and context
+        switching using custom thread control structures.
+      </p>
+    </section>
+
+    <!-- Features -->
+    <section class="grid-2 section">
+
+      <article class="card info-card">
+        <h3>Key Features</h3>
+        <ul class="resume-list">
+          <li>User-level thread creation and scheduling</li>
+          <li>Preemptive multitasking using timer interrupts</li>
+          <li>Semaphore-based synchronization</li>
+          <li>Custom queue for managing ready and blocked threads</li>
+          <li>Thread context switching with independent stacks</li>
+        </ul>
+      </article>
+
+      <article class="card info-card">
+        <h3>What I Learned</h3>
+        <p>
+          This project deepened my understanding of concurrency, scheduling, and
+          synchronization. I gained hands-on experience with race conditions,
+          context switching, and how operating systems manage thread execution
+          at a low level.
+        </p>
+      </article>
+
+    </section>
+
+    <!-- Technical Breakdown -->
+    <section class="grid-2 section">
+
+      <article class="card info-card">
+        <h3>Thread Management</h3>
+        <p>
+          Each thread is represented by a thread control block (TCB) containing
+          execution context and stack information. Threads are scheduled from a
+          ready queue and can yield or be preempted.
+        </p>
+      </article>
+
+      <article class="card info-card">
+        <h3>Scheduling & Preemption</h3>
+        <p>
+          Preemption is implemented using a timer and signal handler that forces
+          threads to yield periodically, preventing any single thread from
+          monopolizing CPU time.
+        </p>
+      </article>
+
+      <article class="card info-card">
+        <h3>Synchronization</h3>
+        <p>
+          A semaphore API controls access to shared resources, preventing race
+          conditions by blocking and waking threads in a controlled order.
+        </p>
+      </article>
+
+      <article class="card info-card">
+        <h3>Queue System</h3>
+        <p>
+          A custom queue implemented as a doubly linked list stores ready and
+          blocked threads, enabling efficient insertion and removal operations.
+        </p>
+      </article>
+
+    </section>
+
+    <!-- Challenges -->
+    <section class="card info-card">
+      <h3>Challenges</h3>
+      <p>
+        Managing correct context switching while handling asynchronous
+        preemption was a key challenge. Ensuring thread safety while modifying
+        shared structures required careful coordination and disabling interrupts
+        in critical sections.
+      </p>
+    </section>
+
+   <section class="card info-card">
+    <h3>Preemption Demonstration</h3>
+
+    <p>
+        I validated preemptive scheduling by comparing a baseline infinite-loop case
+        against a preemption-enabled case. Without preemption, execution remains
+        stuck in a single thread. With preemption, timer interrupts force context
+        switches, allowing other threads to run.
+    </p>
+
+    <div class="demo-grid">
+
+        <!-- Baseline -->
+        <div class="demo-item">
+        <h4>Without Preemption</h4>
+        <p class="muted">
+            Execution is stuck in Thread 1 due to the infinite loop.
+        </p>
+
+        <div class="terminal-demo">
+            <div class="terminal-bar">
+            <span></span><span></span><span></span>
+            </div>
+            <img src="../assets/uthread-baseline-code.png" alt="Baseline uthread code" />
+        </div>
+
+        <div class="terminal-demo">
+            <div class="terminal-bar">
+            <span></span><span></span><span></span>
+            </div>
+            <img src="../assets/uthread-baseline-output.png" alt="Baseline output showing only Thread 1" />
+        </div>
+        </div>
+
+        <!-- Preemption -->
+        <div class="demo-item">
+        <h4>With Preemption</h4>
+        <p class="muted">
+            Thread 2 executes despite Thread 1 looping, proving successful
+            preemptive scheduling.
+        </p>
+
+        <div class="terminal-demo">
+            <div class="terminal-bar">
+            <span></span><span></span><span></span>
+            </div>
+            <img src="../assets/uthread-preempt-code.png" alt="Preemption code" />
+        </div>
+
+        <div class="terminal-demo">
+            <div class="terminal-bar">
+            <span></span><span></span><span></span>
+            </div>
+            <img src="../assets/uthread-preempt-output.png" alt="Output showing Thread 1 and Thread 2" />
+        </div>
+        </div>
+
+    </div>
+
+    <p class="muted">
+        This behavior mirrors how operating systems enforce fairness by interrupting
+        long-running tasks and scheduling other threads.
+    </p>
+    </section>
+
+
+    <!-- Notes -->
+    <section class="card info-card">
+      <h3>Notes</h3>
+      <p>
+        Source code is available upon request due to academic collaboration
+        constraints. The library was tested through custom test cases and
+        provided validation programs to ensure correctness across all APIs.
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer container">
+  <p>Concurrency-focused project demonstrating scheduling, synchronization, and thread management.</p>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

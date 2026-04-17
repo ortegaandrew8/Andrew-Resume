@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Brick Breaker | Andrew Ortega</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="../index.html">Andrew <span>Ortega</span></a>
+
+    <div class="nav-wrap">
+      <button class="menu-btn" id="menuBtn">☰</button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../resume.html">Resume</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="section">
+  <div class="container">
+
+    <div class="eyebrow">Embedded Systems Project</div>
+    <h2>Brick Breaker</h2>
+
+    <!-- Overview -->
+    <section class="card info-card">
+      <h3>Overview</h3>
+      <p>
+        Brick Breaker is an embedded implementation of the classic Breakout game
+        built on the CC3200 microcontroller. The system integrates real-time
+        gameplay, hardware input, and cloud connectivity into a complete
+        arcade-style experience.
+      </p>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="grid-2 section">
+
+      <article class="card info-card">
+        <h3>Key Features</h3>
+        <ul class="resume-list">
+          <li>Accelerometer-controlled paddle movement</li>
+          <li>OLED rendering of game state</li>
+          <li>Brick durability system with color-based HP</li>
+          <li>Power-ups (extra ball, slow-down, sudden death)</li>
+          <li>Score tracking, lives, and level progression</li>
+          <li>IR remote initials input</li>
+          <li>AWS-backed leaderboard</li>
+        </ul>
+      </article>
+
+      <article class="card info-card">
+        <h3>Tech Stack</h3>
+        <ul class="resume-list">
+          <li><strong>Language:</strong> C</li>
+          <li><strong>Hardware:</strong> CC3200, OLED, IR sensor, buzzer</li>
+          <li><strong>Protocols:</strong> I2C, SPI, GPIO interrupts, PWM</li>
+          <li><strong>Cloud:</strong> AWS Lambda, API Gateway, DynamoDB</li>
+        </ul>
+      </article>
+
+    </section>
+
+    <!-- Development Process -->
+    <section class="card info-card">
+      <h3>Development Process</h3>
+
+      <p>
+        This project was built on top of a sequence of embedded systems labs that
+        introduced core hardware and software concepts, which were later integrated
+        into the final system.
+      </p>
+
+      <ul class="resume-list">
+        <li>
+          <strong>Lab 1:</strong> Introduced the CC3200 board and development
+          environment, establishing familiarity with the hardware.
+        </li>
+
+        <li>
+          <strong>Lab 2:</strong> Integrated the OLED display using SPI and built
+          rendering logic. As an extension, I developed a Snake game to explore
+          real-time graphics and input handling.
+        </li>
+
+        <li>
+          <strong>Lab 3:</strong> Added IR sensor input, enabling communication
+          between a remote control and the board.
+        </li>
+
+        <li>
+          <strong>Lab 4:</strong> Implemented interrupt-driven input handling for the
+          IR remote and introduced HTTP POST/GET communication using AWS Lambda,
+          enabling cloud-based data transfer.
+        </li>
+      </ul>
+
+      <p class="muted">
+        These foundational components were integrated into the final system,
+        combining hardware interfaces, real-time input handling, and cloud
+        communication into a cohesive embedded application.
+      </p>
+    </section>
+
+    <!-- System Design Diagrams -->
+    <section class="card info-card">
+      <h3>System Design</h3>
+
+      <p>
+        The system integrates hardware components, gameplay logic, and cloud
+        services. The diagrams below illustrate the wiring, game flow, and
+        overall architecture.
+      </p>
+
+      <div class="diagram-grid">
+
+        <!-- Hardware -->
+        <div class="diagram-item">
+          <h4>Hardware Wiring</h4>
+          <div class="terminal-demo">
+            <img src="../assets/brickbreaker-hardware.png" alt="Hardware wiring diagram" />
+          </div>
+          <p class="muted">
+            CC3200 connected to IR sensor, OLED display, and buzzer.
+          </p>
+        </div>
+
+        <!-- Game Flow -->
+        <div class="diagram-item">
+          <h4>Game State Flow</h4>
+          <div class="terminal-demo">
+            <img src="../assets/brickbreaker-flow.png" alt="Game flow diagram" />
+          </div>
+          <p class="muted">
+            Idle → Game → Game Over → Initials → Upload → Restart.
+          </p>
+        </div>
+
+        <!-- Architecture -->
+        <div class="diagram-item full-width">
+          <h4>System Architecture</h4>
+          <div class="terminal-demo">
+            <img src="../assets/brickbreaker-architecture.png" alt="System architecture diagram" />
+          </div>
+          <p class="muted">
+            Hardware inputs feed into gameplay logic and AWS services to power
+            the leaderboard.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Implementation -->
+    <section class="grid-2 section">
+
+      <article class="card info-card">
+        <h3>Gameplay Logic</h3>
+        <p>
+          The game tracks ball position, paddle movement, and brick states.
+          Collisions are computed using bounding logic, and bricks are stored
+          as structured objects with HP and state.
+        </p>
+      </article>
+
+      <article class="card info-card">
+        <h3>Cloud Integration</h3>
+        <p>
+          After game over, player initials are entered via IR remote and sent
+          to AWS using HTTP POST. Data is stored in DynamoDB and retrieved to
+          display a leaderboard.
+        </p>
+      </article>
+
+    </section>
+
+    <!-- Video Demo -->
+    <section class="card info-card">
+      <h3>Demo</h3>
+
+      <p>
+        This demo showcases gameplay, accelerometer-based paddle control,
+        power-ups, and leaderboard integration.
+      </p>
+
+      <div class="video-container">
+        <video controls>
+          <source src="../assets/brickbreaker-demo.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <p class="muted">
+        Demonstrates accelerometer input (I2C), OLED rendering (SPI), gameplay
+        logic, and AWS leaderboard integration.
+      </p>
+    </section>
+
+    <!-- Challenges -->
+    <section class="card info-card">
+      <h3>Challenges</h3>
+      <p>
+        Debugging unexpected “ghost balls” and tuning PWM frequencies for audio
+        were key challenges. Integrating AWS services and configuring permissions
+        and CORS for leaderboard access also required careful debugging.
+      </p>
+    </section>
+
+    <!-- What I Learned -->
+    <section class="card info-card">
+      <h3>What I Learned</h3>
+      <p>
+        This project reinforced how hardware, real-time input, and cloud services
+        can be combined into a complete system. It strengthened my understanding
+        of embedded design, event-driven programming, and system integration.
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer container">
+  <p>Embedded system combining hardware interaction, gameplay, and cloud services.</p>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

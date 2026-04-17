@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple Shell | Andrew Ortega</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="../index.html">Andrew <span>Ortega</span></a>
+
+    <div class="nav-wrap">
+      <button class="menu-btn" id="menuBtn">☰</button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../resume.html">Resume</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="section">
+  <div class="container">
+
+    <div class="eyebrow">Systems Project</div>
+    <h2>Simple Shell (sshell)</h2>
+
+    <!-- Overview -->
+    <section class="card info-card">
+      <h3>Overview</h3>
+      <p>
+        I built a Unix-style command-line shell in C capable of executing
+        standard commands, handling piping across multiple processes, and
+        supporting both input and output redirection. The project focused on
+        low-level systems concepts such as process creation, file descriptors,
+        and inter-process communication.
+      </p>
+    </section>
+
+    <!-- Features -->
+    <section class="grid-2 section">
+      <article class="card info-card">
+        <h3>Key Features</h3>
+        <ul class="resume-list">
+          <li>Execution of standard shell commands via <code>execvp</code></li>
+          <li>Built-in commands: <code>cd</code>, <code>pwd</code>, <code>exit</code>, <code>sls</code></li>
+          <li>Pipelining of up to 4 commands using <code>|</code></li>
+          <li>Output redirection (<code>&gt;</code>) and append redirection (<code>&gt;&gt;</code>)</li>
+          <li>Custom command <code>sls</code> to display file sizes</li>
+        </ul>
+      </article>
+
+      <article class="card info-card">
+        <h3>What I Learned</h3>
+        <p>
+          This project strengthened my understanding of how operating systems
+          manage processes and how programs communicate through pipes. It also
+          gave me hands-on experience with parsing input, handling edge cases,
+          and managing system resources safely.
+        </p>
+      </article>
+    </section>
+
+    <!-- Technical Details -->
+    <section class="grid-2 section">
+
+      <article class="card info-card">
+        <h3>Command Parsing</h3>
+        <p>
+          Input commands were parsed using tokenization techniques to separate
+          arguments, pipes, and redirection operators. A linked list structure
+          was used to represent chained commands in pipelines, allowing flexible
+          execution of multi-step operations.
+        </p>
+      </article>
+
+      <article class="card info-card">
+        <h3>Process Execution</h3>
+        <p>
+          Commands were executed using forked child processes and <code>execvp</code>.
+          Pipes and file descriptors were used to redirect input/output streams,
+          enabling communication between processes in a pipeline.
+        </p>
+      </article>
+
+      <article class="card info-card">
+        <h3>Error Handling</h3>
+        <p>
+          The shell handles parsing errors, invalid commands, and system call
+          failures. Input validation ensures commands are properly structured
+          before execution, improving reliability and preventing crashes.
+        </p>
+      </article>
+
+      <article class="card info-card">
+        <h3>Memory Management</h3>
+        <p>
+          Dynamically allocated memory for command structures and pipes was
+          carefully managed and freed after execution to prevent memory leaks.
+        </p>
+      </article>
+
+    </section>
+
+    <!-- Challenges -->
+    <section class="card info-card">
+      <h3>Challenges</h3>
+      <p>
+        One of the main challenges was correctly handling multiple levels of
+        piping and ensuring that each process received the correct input and
+        output streams. Managing file descriptors across multiple processes
+        required careful coordination to avoid unintended behavior.
+      </p>
+    </section>
+
+    <section class="card info-card">
+    <h3>Example Usage</h3>
+
+    <p>
+        The shell supports command execution, file system interaction, output
+        redirection, and command piping. The example below demonstrates creating
+        a file, verifying its contents, and chaining commands using pipes.
+    </p>
+
+    <div class="terminal-demo">
+        <div class="terminal-bar">
+        <span></span><span></span><span></span>
+        </div>
+        <img src="../assets/sshell-demo.png" alt="Simple Shell Full Feature Demo" />
+    </div>
+
+    <p class="muted">
+        Demonstrates:
+        <code>echo this works &gt; output.txt</code> (redirection),
+        <code>cat output.txt</code> (verification), and
+        <code>ls | grep .c</code> (pipelining across processes).
+    </p>
+    </section>
+
+
+    <!-- Notes -->
+    <section class="card info-card">
+      <h3>Notes</h3>
+      <p>
+        Source code is available upon request due to academic collaboration
+        constraints. The project was tested against a reference shell to ensure
+        consistent behavior across a variety of commands.
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer container">
+  <p>Systems-focused project demonstrating process control and OS fundamentals.</p>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Translatinator | Andrew Ortega</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="../index.html">Andrew <span>Ortega</span></a>
+
+    <div class="nav-wrap">
+      <button class="menu-btn" id="menuBtn" type="button">☰</button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../resume.html">Resume</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="section">
+  <div class="container">
+
+    <div class="eyebrow">Full-Stack Product Project</div>
+    <h2>Translatinator</h2>
+
+    <section class="card info-card">
+      <h3>Overview</h3>
+      <p>
+        Translatinator is a full-stack language learning platform designed to
+        help users refresh a familiar language while learning a new one through
+        interleaved translation, synchronized text-to-speech, and interactive
+        practice games.
+      </p>
+      <p>
+        The application supports typed input, file uploads, speech-to-text,
+        multi-language output, downloadable audio, premium subscriptions, and a
+        points-based system tied to games, themes, and a global leaderboard.
+      </p>
+    </section>
+
+    <section class="grid-2 section">
+      <article class="card info-card">
+        <h3>Key Features</h3>
+        <ul class="resume-list">
+          <li>Raw text, PDF/TXT upload, and speech-to-text input</li>
+          <li>Translation into multiple target languages</li>
+          <li>Per-language voice and speed controls</li>
+          <li>Sentence or paragraph-level alternating playback</li>
+          <li>Clickable synchronized text highlighting during audio playback</li>
+          <li>Downloadable and cloud-saved MP3 output</li>
+          <li>Premium subscriptions, points, themes, and leaderboard</li>
+          <li>Interactive language-learning games</li>
+        </ul>
+      </article>
+
+      <article class="card info-card">
+        <h3>Tech Stack</h3>
+        <ul class="resume-list">
+          <li><strong>Frontend:</strong> React</li>
+          <li><strong>Backend:</strong> Node.js / Express</li>
+          <li><strong>Database / Hosting:</strong> Firebase (Firestore, Auth, Hosting, Storage)</li>
+          <li><strong>APIs:</strong> Google Translate, Google Text-to-Speech</li>
+          <li><strong>Payments:</strong> Stripe</li>
+          <li><strong>Caching:</strong> Redis</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="card info-card">
+      <h3>Product Workflow</h3>
+      <p>
+        The core experience is organized around three steps: input, language
+        settings, and output. Users provide text, configure how translations
+        should be generated, and then listen through a full-play interface that
+        highlights text in sync with the generated audio.
+      </p>
+
+      <div class="diagram-grid">
+        <div class="diagram-item full-width">
+          <h4>Home Workflow</h4>
+          <div class="terminal-demo">
+            <img src="../assets/translatinator-page-12.png" alt="Translatinator home page workflow" />
+          </div>
+          <p class="muted">
+            Main workflow showing input, language settings, and output in a single interface.
+          </p>
+        </div>
+
+        <div class="diagram-item">
+          <h4>Language Settings</h4>
+          <div class="terminal-demo">
+            <img src="../assets/translatinator-page-15.png" alt="Translatinator language settings" />
+          </div>
+          <p class="muted">
+            Users can configure input language, target languages, voices, speed,
+            and alternating frequency, with premium tiers allowing more target languages.
+          </p>
+        </div>
+
+        <div class="diagram-item">
+          <h4>Full Play Mode</h4>
+          <div class="terminal-demo">
+            <img src="../assets/translatinator-page-16.png" alt="Translatinator full play mode with highlighted output" />
+          </div>
+          <p class="muted">
+            Generated translations are read aloud with synchronized highlighting,
+            and users can click into the text to jump within playback.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid-2 section">
+      <article class="card info-card">
+        <h3>Input & Translation Pipeline</h3>
+        <p>
+          Users can enter text manually, upload PDF or TXT documents, or use
+          speech-to-text for supported languages. The app then translates the
+          input into one or more target languages and generates MP3 output with
+          configurable voices and playback speed.
+        </p>
+      </article>
+
+      <article class="card info-card">
+        <h3>Learning-Oriented Output</h3>
+        <p>
+          A core design decision was interleaved translation: instead of only
+          showing the final translation, the application alternates between the
+          original and translated content at the sentence or paragraph level to
+          reinforce comprehension and retention.
+        </p>
+      </article>
+    </section>
+
+    <section class="card info-card">
+      <h3>Interactive Games</h3>
+      <p>
+        To reinforce learning beyond passive listening, premium users can access
+        three language-focused games: Greeting Practice, Word Match, and Bingo.
+        These activities connect pronunciation, vocabulary recognition, and
+        listening comprehension to a shared point and rewards system.
+      </p>
+
+      <div class="diagram-grid">
+        <div class="diagram-item">
+          <h4>Greeting Practice</h4>
+          <div class="terminal-demo">
+            <img src="../assets/translatinator-page-21.png" alt="Greeting Practice game" />
+          </div>
+          <p class="muted">
+            Pronunciation-focused practice with feedback, replay, and repeated attempts.
+          </p>
+        </div>
+
+        <div class="diagram-item">
+          <h4>Word Match</h4>
+          <div class="terminal-demo">
+            <img src="../assets/translatinator-page-23.png" alt="Word Match game" />
+          </div>
+          <p class="muted">
+            Matching words across languages with a life system to discourage guessing.
+          </p>
+        </div>
+
+        <div class="diagram-item full-width">
+          <h4>Bingo</h4>
+          <div class="terminal-demo">
+            <img src="../assets/translatinator-page-25.png" alt="Bingo listening game" />
+          </div>
+          <p class="muted">
+            Audio-to-word matching designed to strengthen listening comprehension.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid-2 section">
+      <article class="card info-card">
+        <h3>Subscriptions & Monetization</h3>
+        <p>
+          Premium tiers unlock additional target languages, higher quality
+          voices, games, themes, fonts, and increased daily translation limits.
+          Stripe is used to manage subscription upgrades and billing flows.
+        </p>
+      </article>
+
+      <article class="card info-card">
+        <h3>Retention & Rewards</h3>
+        <p>
+          The application includes a global leaderboard, point accumulation from
+          translation and gameplay, and a shop for themes, fonts, and even a
+          free month of membership, giving users a reason to continue engaging
+          beyond one-time use.
+        </p>
+      </article>
+    </section>
+
+    <section class="card info-card">
+      <h3>Engagement Systems</h3>
+
+      <div class="diagram-grid">
+        <div class="diagram-item">
+          <h4>Leaderboard</h4>
+          <div class="terminal-demo">
+            <img src="../assets/translatinator-page-26.png" alt="Translatinator leaderboard" />
+          </div>
+          <p class="muted">
+            Top users are ranked by points earned through gameplay and translation activity.
+          </p>
+        </div>
+
+        <div class="diagram-item">
+          <h4>Point Shop</h4>
+          <div class="terminal-demo">
+            <img src="../assets/translatinator-page-27.png" alt="Translatinator point shop" />
+          </div>
+          <p class="muted">
+            Users can spend earned points on themes, fonts, and membership rewards.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card info-card">
+      <h3>System Architecture</h3>
+      <p>
+        The architecture combines a React frontend with a Node/Express backend,
+        Firebase for hosting, authentication, storage, and database services,
+        plus integrations with Google Translate, Google Text-to-Speech, Stripe,
+        and Redis. The architecture diagram in the guide maps those relationships
+        directly.
+      </p>
+
+      <div class="terminal-demo">
+        <img src="../assets/translatinator-page-35.png" alt="Translatinator system architecture overview" />
+      </div>
+    </section>
+
+    <section class="grid-2 section">
+      <article class="card info-card">
+        <h3>Design Goals</h3>
+        <p>
+          The project was motivated by a gap in existing language-learning
+          products: beginner-oriented tools often do not work well for users who
+          want both a refresher in one language and guided exposure to another.
+          Translatinator was designed around customization, interleaving, and
+          repeatable practice to address that gap.
+        </p>
+      </article>
+
+      <article class="card info-card">
+        <h3>Challenges & Constraints</h3>
+        <p>
+          The product had to balance API cost, storage, rate limits, multi-step
+          media generation, and privacy/security concerns around authentication
+          and billing. Also had to cut out some features, such as full MP4
+          generation with TTS highlighting, remained in beta due to technical
+          complexity within timeframe.
+        </p>
+      </article>
+    </section>
+
+    <section class="card info-card">
+      <h3>What I Learned</h3>
+      <p>
+        This project taught me how to design a user-facing product that combines
+        frontend UX, backend orchestration, third-party APIs, cloud services,
+        monetization, and gamification. It pushed me to think about both the
+        technical architecture and the long-term product experience for users.
+        Prior projects did not have as much emphasis on user experience in comparison,
+        so building a web-app with users as the primary focus was a fresh learning experience.
+      </p>
+    </section>
+
+    <section class="card info-card">
+      <h3>Notes</h3>
+      <p>
+        Source code snippets available upon request due to collaboration constraints
+        and final product is property of the client who requested it.
+        This project was developed as a team product and documented through a
+        full user guide and requirements appendix.
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer container">
+  <p>Full-stack language-learning platform combining translation, speech synthesis, gamification, and subscriptions.</p>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>
