@@ -379,7 +379,7 @@ p {
 }
 
 .resume-list li {
-  color: var(--muted);
+  color: var(--text);
   line-height: 1.65;
 }
 
@@ -516,3 +516,8 @@ p {
   }
 }
 
+strong {
+  color: var(--text);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
